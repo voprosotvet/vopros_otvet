@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<div class="d-flex justify-content-between">
+
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                {% if new.photo %}
+                <img src="{{ new.photo.url }}" class="card-img-top" alt="..." height="700px">
+                {% else %}
+                <img src="https://www.kemdetki.ru/media/sp_2020/profile_205873/85263c51-c056-402b-be74-22cfb5ce8ad4.jpeg"
+                     class="card-img-top" alt="..." height="700px">
+                {% endif %}
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <p>{{ new.created_at }}</p>
+                </div>
+                <h5>Категория: {{ new.category }}</h5>
+                <p>{{ new.content }}</p>
+                <span>Просмотры: {{ new.views }}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-3">
+
+        <div class="d-flex flex-column p-4">
+            <h3 class="text-center text-light">Рекомендуемые</h3>
+            {% for new in news %}
+            <a href="{{ new.get_absolute_url }}" class="card mt-2">
+                {% if new.photo %}
+                <img src="{{ new.photo.url }}"  alt="..." height="250px">
+                {% else %}
+                <img src="https://www.kemdetki.ru/media/sp_2020/profile_205873/85263c51-c056-402b-be74-22cfb5ce8ad4.jpeg"
+                      alt="..." height="250px">
+                {% endif %}
+                <p class="text-center fs-5 fw-medium">{{ new.title }}</p>
+            </a>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+{% endblock main %}
+
